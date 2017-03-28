@@ -1,74 +1,39 @@
 <template>
   <div id="app">
-    <h1 v-text="title"></h1>
-    <input v-model="newItem" v-on:keyup.enter="addNew">
-    <ul>
-        <li v-for="item in items" 
-        v-bind:class="{finish: item.isFinished}"
-        v-on:click="toggleFinish(item)">
-        {{item.label}}</li>
-    </ul>
-    <component-a myMsg="我我往往我我"
-                 v-on:childTold="listenTo"></component-a>
-    <p>child word: {{childWords}}</p>
+    <!--<list></list>-->
+    <a class="button" @click="next"> GO NEXT</a>
   </div>
 </template>
 
 <script>
-  import Store from './store.js'
-  import ComponentA from './components/componentA'
+// import List from './components/List'
 export default {
-  data: function() {
-    return {
-      title: 'this is a todo list',
-      items: Store.fetch(),
-      newItem: ' ',     
-      childWords: ' ' 
-    }
-  },
-  components: { ComponentA },
-  watch: {
-    items: {
-      handler: function(val,oldval) {
-        Store.save(this.items)
-      },
-      deep: true//必要，触发handler
-    }
-  },
+  
+  components: {  },
+  
   methods:{
-    toggleFinish: function(item) {
-      item.isFinished = !(item.isFinished)
-    },
-    addNew: function() {
-      this.items.push({
-        label: this.newItem,
-        isFinished: false
-      });
-      console.log(this.newItem);
-      // this,newItem= ''
-    },
-    listenTo: function(msg) {
-      this.childWords = msg
+    next() {
+
     }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-.finish {
-background: pink;
-
-
-
-
-
-}
+<style scoped>
+ .button {
+    display: block;
+    width: 100%;
+    background: #212121;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    padding: 1em;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .button span {
+    margin-left: 2em;
+    font-size: .5rem;
+    color: #d6
+  }
 </style>
