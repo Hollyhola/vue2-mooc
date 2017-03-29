@@ -1,19 +1,28 @@
 <template>
   <div id="app">
-    <!--<list></list>-->
-    <a class="button" @click="next"> GO NEXT</a>
+    <!--不带冒号后面是字符串，带了冒号就是数据绑定-->
+    <list :page="page"></list>
+    <!--<a class="button" @click="next"> GO NEXT</a>-->
+    <a class="button" @click="next"> GO NEXT<span>CURRENT:{{page}}</span></a>
+    <!--<div id="loader" v-show:"!finish" :transition:"up"? 'up-start': 'down-start'>
+        <span>Loading</span>
+    </div>-->
   </div>
 </template>
 
 <script>
-// import List from './components/List'
+import List from './components/List'
 export default {
-  
-  components: {  },
+  data() {
+    return {
+      page:  1
+    }
+  },
+  components: { List },
   
   methods:{
     next() {
-
+      this.page++
     }
   }
 }
@@ -34,6 +43,6 @@ export default {
   .button span {
     margin-left: 2em;
     font-size: .5rem;
-    color: #d6
+    color: white
   }
 </style>
