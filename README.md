@@ -1,6 +1,7 @@
-# my-project
+# 新闻列表展示
 
-> A Vue.js project
+> 新闻列表加载
+> 新闻列表翻页
 
 ## Build Setup
 
